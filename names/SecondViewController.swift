@@ -8,27 +8,19 @@
 import UIKit
 
 class SecondViewController: UIViewController {
-    
-   
-    
    
     @IBOutlet weak var textField: UITextField!
     
-
     var someText = ""
-   
    
     override func viewDidLoad() {
         super.viewDidLoad()
        
         textField.text = someText
-        
-        
     }
     
     @IBAction func textAction(_ sender: UITextField) {
         
     }
-    
 }
 

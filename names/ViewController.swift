@@ -9,25 +9,18 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    
     @IBOutlet weak var tableView: UITableView!
     
     var array = ["name1", "name2", "name3"]
     
     let identifire = "MyCell"
     
-   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
        
         tableView.delegate = self
         tableView.dataSource = self
-        
-        
     }
-
-
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
@@ -56,16 +49,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
               
                 let storyBoard = secondView.instantiateViewController(withIdentifier: "SecondViewController") as! SecondViewController
                 
-                
-              
                 storyBoard.someText = self.array[indexPath.row]
                 
-                
-                
                 self.show(storyBoard, sender: nil)
-                
-            
-                
             }
            
             alert.addAction(alertCancel)
