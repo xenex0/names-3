@@ -7,20 +7,31 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+protocol ViewControllerDelegate {
    
-    @IBOutlet weak var textField: UITextField!
-    
+   func addTableDelegate(addForViewController: String)
+}
+
+class SecondViewController: UIViewController {
+
     var someText = ""
+    
+    var delegate: ViewControllerDelegate?
+
+    @IBOutlet weak var textField: UITextField!
    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        textField.text = someText
+        
+    textField.text = someText
     }
     
-    @IBAction func textAction(_ sender: UITextField) {
-        
+    @IBAction func actionButton(_ sender: UIButton) {
+        let name = textField.text
+        delegate?.addTableDelegate(addForViewController: name!) 
+        navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
+          print("hi \(name!)")
     }
 }
 
