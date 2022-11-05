@@ -9,20 +9,25 @@ import UIKit
 
 
 class ViewController: UIViewController, ViewControllerDelegate {
-   
+    
     @IBOutlet weak var tableView: UITableView!
     
-    var array: [String] = []
-    
+    var array = ["name1", "name2", "name3"]
     let identifire = "MyCell"
+    var indexPath: IndexPath = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        tableView.delegate = self
-        tableView.dataSource = self
         
-         array = ["name1", "name2", "name3"]
+    tableView.delegate = self
+    tableView.dataSource = self
+         
+    }
+    
+    func addTableDelegate(addForViewController: String) {
+        array[indexPath.row] = addForViewController
+        
+        tableView.reloadData()
     }
 }
 
@@ -30,31 +35,26 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return array.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
-       let cell = UITableViewCell(style: .default, reuseIdentifier: identifire)
-       let number = array[indexPath.row]
+        
+        let cell = UITableViewCell(style: .default, reuseIdentifier: identifire)
+        let number = array[indexPath.row]
         cell.textLabel?.text =  number
         
-      return cell
+        return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      
+        
         if tableView.isExclusiveTouch == false {
-            let alert = UIAlertController(title: "alert", message: "select person", preferredStyle: .alert)
+        let alert = UIAlertController(title: "alert", message: "select person",preferredStyle: .alert)
             let alertCancel = UIAlertAction(title: "Cancel", style: .cancel)
             let alertAction = UIAlertAction(title: "Done", style: .default) { [self]  _ in
-                
-                let secondView = UIStoryboard(name: "Main", bundle: nil)
-                
-                let storyBoard = secondView.instantiateViewController(withIdentifier: "SecondViewController") as! SecondViewController
-            
-                storyBoard.someText = self.array[indexPath.row]
-                
+            let secondView = UIStoryboard(name: "Main", bundle: nil)
+            let storyBoard = secondView.instantiateViewController(withIdentifier: "SecondViewController") as! SecondViewController
+                storyBoard.someText = array[indexPath.row]
+                storyBoard.delegate = self
                 self.show(storyBoard, sender: nil)
             }
-            
             alert.addAction(alertCancel)
             alert.addAction(alertAction)
             alert.addTextField() { (textField) in
@@ -62,20 +62,15 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             }
             present(alert, animated: true)
         }
-    }
     
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowDeteails" {
             let addNames = segue.destination as! SecondViewController
             addNames.delegate = self
         }
     }
-  
-    func addTableDelegate(addForViewController: String) {
-        self.dismiss(animated: true)
-            array.append(addForViewController)
-            self.tableView.reloadData()
-    }
-        }
+    
+}
         
 
