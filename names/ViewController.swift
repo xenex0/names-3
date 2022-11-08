@@ -13,7 +13,7 @@ class ViewController: UIViewController, ViewControllerDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var array = ["name1", "name2", "name3"]
-    let identifire = "MyCell"
+    var identifire = "MyCell"
     let nameKey = "nameKey"
     var textField1 = ""
     var indexPath: IndexPath = []
@@ -62,7 +62,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: identifire, sender: self)
-        
+        self.indexPath = indexPath
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  "MyCell" {
