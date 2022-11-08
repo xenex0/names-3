@@ -27,7 +27,6 @@ class ViewController: UIViewController, ViewControllerDelegate {
         
         if let name = userDefaults.object(forKey: nameKey) as? [String] {
             self.array = name
-           
         }
     }
     func addTableDelegate(addForViewController: String) {
@@ -60,7 +59,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: identifire, sender: self)
         self.indexPath = indexPath
     }
@@ -68,6 +66,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         if segue.identifier ==  "MyCell" {
             let addNames = segue.destination as! SecondViewController
             addNames.delegate = self
+            addNames.someText = array[(tableView.indexPathForSelectedRow?.row)!]
+            tableView.reloadData()
         }
     }
 }

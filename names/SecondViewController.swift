@@ -15,7 +15,7 @@ protocol ViewControllerDelegate {
 class SecondViewController: UIViewController {
 
     var someText = ""
-    
+        
     var delegate: ViewControllerDelegate?
 
     @IBOutlet weak var textField: UITextField!
