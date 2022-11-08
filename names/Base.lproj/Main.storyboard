@@ -55,36 +55,44 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="W8A-dy-GiE">
+                                <rect key="frame" x="0.0" y="436" width="428" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="buttton"/>
+                                <connections>
+                                    <action selector="buttonAlert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hn0-Gk-Ae7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="8Tx-ML-lUK" secondAttribute="bottom" id="9Jn-UW-fZ8"/>
-                            <constraint firstItem="8Tx-ML-lUK" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="NbE-Ut-4Vx"/>
-                            <constraint firstItem="8Tx-ML-lUK" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Vby-e4-O2w"/>
-                            <constraint firstItem="8Tx-ML-lUK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="d5a-VL-SYy"/>
+                            <constraint firstAttribute="bottom" secondItem="8Tx-ML-lUK" secondAttribute="bottom" id="ALw-7P-c5z"/>
+                            <constraint firstItem="8Tx-ML-lUK" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Hiy-ff-eZT"/>
+                            <constraint firstItem="8Tx-ML-lUK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jDZ-GC-V9I"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8Tx-ML-lUK" secondAttribute="trailing" id="vMa-1h-QUa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UEy-1D-3XB"/>
                     <connections>
                         <outlet property="tableView" destination="8Tx-ML-lUK" id="D3s-cu-2N2"/>
-                        <segue destination="kXe-fc-6x5" kind="show" identifier="ShowDeteails" id="0gR-mH-biG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="350.46728971962614" y="-527.42980561555078"/>
+            <point key="canvasLocation" x="1247.6635514018692" y="-528.07775377969767"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="aD1-Tv-OSt">
             <objects>
                 <viewController storyboardIdentifier="SecondViewController" id="kXe-fc-6x5" customClass="SecondViewController" customModule="names" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xv4-aA-Rkp">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="869"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BuX-95-KpD">
-                                <rect key="frame" x="74" y="417.66666666666669" width="280" height="34"/>
+                                <rect key="frame" x="74" y="446" width="280" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -113,7 +121,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jrv-oe-QEq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1136.9158878504672" y="-528.07775377969767"/>
+            <point key="canvasLocation" x="2088.7850467289718" y="-527.42980561555078"/>
         </scene>
     </scenes>
     <resources>
