@@ -46,7 +46,10 @@ class ViewController: UIViewController, ViewControllerDelegate {
         alert.addAction(alertAction)
         self.present(alert, animated: true)
     }
+    @IBAction func editItem(_ sender: UIBarButtonItem) {
+        tableView.isEditing = !tableView.isEditing
     }
+}
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,12 +74,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             tableView.reloadData()
         }
     }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  "MyCell" {
             let addNames = segue.destination as! SecondViewController
             addNames.delegate = self
-            addNames.someText = array[(tableView.indexPathForSelectedRow?.row)!]
             tableView.reloadData()
         }
     }

@@ -66,6 +66,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UEy-1D-3XB">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="uP9-Hc-gzj">
+                            <connections>
+                                <action selector="editItem:" destination="BYZ-38-t0r" id="3Tg-Bo-klK"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="XqT-o1-nAX">
                             <connections>
                                 <action selector="itemBar:" destination="BYZ-38-t0r" id="nBq-Md-Npf"/>
