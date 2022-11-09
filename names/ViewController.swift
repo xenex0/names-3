@@ -34,7 +34,7 @@ class ViewController: UIViewController, ViewControllerDelegate {
         tableView.reloadData()
     }
     
-    @IBAction func buttonAlert(_ sender: UIButton)  {
+    @IBAction func itemBar(_ sender: UIBarButtonItem) {
         let alert =  UIAlertController(title: "select", message: "enter some name", preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "save", style: .default) { [self] _ in
             let alertText = alert.textFields?.first?.text
@@ -46,7 +46,8 @@ class ViewController: UIViewController, ViewControllerDelegate {
         alert.addAction(alertAction)
         self.present(alert, animated: true)
     }
-}
+    }
+
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return array.count
