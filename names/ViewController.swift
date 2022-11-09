@@ -63,6 +63,15 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         performSegue(withIdentifier: identifire, sender: self)
         self.indexPath = indexPath
     }
+    
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            array.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            tableView.reloadData()
+        }
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  "MyCell" {
             let addNames = segue.destination as! SecondViewController
