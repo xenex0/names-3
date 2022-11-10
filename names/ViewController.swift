@@ -71,7 +71,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             array.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-            tableView.reloadData()
+            let selectedIndexPath = IndexPath(item:0 , section: 0)
+            self.tableView.reloadRows(at: [selectedIndexPath], with: .none)
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
