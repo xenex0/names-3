@@ -15,6 +15,7 @@ class ViewController: UIViewController, ViewControllerDelegate {
     var array = ["name1", "name2", "name3"]
     var identifire = "MyCell"
     let nameKey = "nameKey"
+  //  let nameKey1 = "nameKey1"
     var textField1 = ""
     var indexPath: IndexPath = []
     let userDefaults = UserDefaults.standard
@@ -31,6 +32,7 @@ class ViewController: UIViewController, ViewControllerDelegate {
     }
     func addTableDelegate(addForViewController: String) {
         array[indexPath.row] = addForViewController
+        userDefaults.set(self.array, forKey: nameKey)
         tableView.reloadData()
     }
     
@@ -70,9 +72,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             array.remove(at: indexPath.row)
+            userDefaults.set(self.array, forKey: nameKey)
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-            let selectedIndexPath = IndexPath(item:0 , section: 0)
-            self.tableView.reloadRows(at: [selectedIndexPath], with: .none)
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
