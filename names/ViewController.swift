@@ -15,7 +15,6 @@ class ViewController: UIViewController, ViewControllerDelegate {
     var array = ["name1", "name2", "name3"]
     var identifire = "MyCell"
     let nameKey = "nameKey"
-  //  let nameKey1 = "nameKey1"
     var textField1 = ""
     var indexPath: IndexPath = []
     let userDefaults = UserDefaults.standard
@@ -25,14 +24,18 @@ class ViewController: UIViewController, ViewControllerDelegate {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        if let name = userDefaults.object(forKey: nameKey) as? [String] {
-            self.array = name
+         
+            if let name = userDefaults.object(forKey: nameKey) as? [String] {
+                array = name
         }
     }
+    func loadSettings() {
+        userDefaults.set(array, forKey: nameKey)
+    }
+    
     func addTableDelegate(addForViewController: String) {
         array[indexPath.row] = addForViewController
-        userDefaults.set(self.array, forKey: nameKey)
+        loadSettings()
         tableView.reloadData()
     }
     
@@ -41,12 +44,12 @@ class ViewController: UIViewController, ViewControllerDelegate {
         let alertAction = UIAlertAction(title: "save", style: .default) { [self] _ in
             let alertText = alert.textFields?.first?.text
             array.append(alertText ?? "")
-            userDefaults.set(self.array, forKey: nameKey)
+            loadSettings()
             tableView.reloadData()
         }
         alert.addTextField()
         alert.addAction(alertAction)
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
     @IBAction func editItem(_ sender: UIBarButtonItem) {
         tableView.isEditing = !tableView.isEditing
@@ -72,7 +75,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             array.remove(at: indexPath.row)
-            userDefaults.set(self.array, forKey: nameKey)
+            loadSettings()
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
