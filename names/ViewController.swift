@@ -83,6 +83,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         if segue.identifier ==  "MyCell" {
             let addNames = segue.destination as! SecondViewController
             addNames.delegate = self
+            addNames.someText = array[(tableView.indexPathForSelectedRow?.row)!]
             tableView.reloadData()
         }
     }
