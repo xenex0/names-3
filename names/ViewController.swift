@@ -73,12 +73,21 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCell.EditingStyle.delete {
+         if editingStyle == UITableViewCell.EditingStyle.delete{
             array.remove(at: indexPath.row)
-            loadSettings()
-            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.none)
         }
     }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        array.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        loadSettings()
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  "MyCell" {
             let addNames = segue.destination as! SecondViewController
