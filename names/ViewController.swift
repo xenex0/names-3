@@ -12,7 +12,8 @@ class ViewController: UIViewController, ViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var array = ["name1", "name2", "name3"]
+    var array = Name.getNameData()
+    
     var identifire = "MyCell"
     let nameKey = "nameKey"
     var textField1 = ""
@@ -26,15 +27,15 @@ class ViewController: UIViewController, ViewControllerDelegate {
         tableView.dataSource = self
          
             if let name = userDefaults.object(forKey: nameKey) as? [String] {
-                array = name
+                array.names = name
         }
     }
     func loadSettings() {
-        userDefaults.set(array, forKey: nameKey)
+        userDefaults.set(array.names, forKey: nameKey)
     }
     
     func addTableDelegate(addForViewController: String) {
-        array[indexPath.row] = addForViewController
+        array.names[indexPath.row] = addForViewController
         loadSettings()
         tableView.reloadData()
     }
@@ -43,7 +44,7 @@ class ViewController: UIViewController, ViewControllerDelegate {
         let alert =  UIAlertController(title: "select", message: "enter some name", preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "save", style: .default) { [self] _ in
             let alertText = alert.textFields?.first?.text
-            array.append(alertText ?? "")
+            array.names.append(alertText ?? "")
             loadSettings()
             tableView.reloadData()
         }
@@ -58,12 +59,12 @@ class ViewController: UIViewController, ViewControllerDelegate {
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return array.count
+        return array.names.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell(style: .default, reuseIdentifier: identifire)
-        let number = array[indexPath.row]
+        let number = array.names[indexPath.row]
         cell.textLabel?.text =  number
         return cell
     }
@@ -74,13 +75,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
          if editingStyle == UITableViewCell.EditingStyle.delete{
-            array.remove(at: indexPath.row)
+             array.names.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.none)
         }
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        array.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        array.names.swapAt(sourceIndexPath.row, destinationIndexPath.row)
         loadSettings()
     }
     
@@ -92,7 +93,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         if segue.identifier ==  "MyCell" {
             let addNames = segue.destination as! SecondViewController
             addNames.delegate = self
-            addNames.someText = array[(tableView.indexPathForSelectedRow?.row)!]
+            addNames.someText = array.names[(tableView.indexPathForSelectedRow?.row)!]
             tableView.reloadData()
         }
     }
