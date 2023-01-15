@@ -7,23 +7,28 @@
 
 import Foundation
 
-protocol NameViewDelegate: AnyObject {
-    func showName(description:(Name))
+protocol NameControllerPresenter: AnyObject {
+   func addTableDelegate(addForViewController: String)
 }
 
-class TrafficLightPresenter {
-    private let name : Name
-    weak private var nameViewDelegate : NameViewDelegate?
+protocol NamePresenter: AnyObject {
+    init(view: NameControllerPresenter)
+    func showName()
+}
+
+class ViewPresenter: NamePresenter {
     
-    init(name : Name){
-        self.name = name
+    required init(view: NameControllerPresenter) {
+        self.view = view
     }
     
-    func setViewDelegate(nameViewDelegate : NameViewDelegate?){
-        self.nameViewDelegate = nameViewDelegate
-    }
+    let view: NameControllerPresenter
     
-    func getNameFrom(getName: String) {
+   weak var secondView: SecondViewController?
     
+    func showName() {
+        let name = secondView?.textField.text
+        self.view.addTableDelegate(addForViewController: name!)
+        print("2")
     }
 }

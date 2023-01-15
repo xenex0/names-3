@@ -8,7 +8,8 @@
 import UIKit
 
 
-class ViewController: UIViewController, ViewControllerDelegate {
+class ViewController: UIViewController, NameControllerPresenter {
+    
     
     @IBOutlet weak var tableView: UITableView!
     
