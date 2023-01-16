@@ -8,9 +8,10 @@
 import Foundation
 
 struct Name {
-    var names: [String]
     
-    static func getNameData() -> Name {
-        Name(names: ["name1","name2","name3"])
-    }
+   var names: [String]
+    
+   static func getNameData() -> Name {
+      Name(names: ["name1","name2","name3"])
+   }
 }

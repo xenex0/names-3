@@ -13,22 +13,18 @@ protocol NameControllerPresenter: AnyObject {
 
 protocol NamePresenter: AnyObject {
     init(view: NameControllerPresenter)
-    func showName()
 }
 
 class ViewPresenter: NamePresenter {
-    
-    required init(view: NameControllerPresenter) {
+   
+    required init(view: NameControllerPresenter ) {
         self.view = view
     }
     
-    let view: NameControllerPresenter
+    weak var view: NameControllerPresenter!
     
-   weak var secondView: SecondViewController?
+    var secondView: SecondViewController!
     
-    func showName() {
-        let name = secondView?.textField.text
-        self.view.addTableDelegate(addForViewController: name!)
-        print("2")
+   
     }
-}
+

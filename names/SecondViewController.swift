@@ -7,17 +7,15 @@
 
 import UIKit
 
-
 class SecondViewController: UIViewController {
     
-    var someText = ""
+   var someText = ""
         
-   var delegate: NameControllerPresenter?
+   weak var delegate: NameControllerPresenter!
     
-   weak var presenter: NamePresenter?
+   var presenter: NamePresenter!
     
-
-    @IBOutlet weak var textField: UITextField!
+   @IBOutlet weak var textField: UITextField!
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +24,10 @@ class SecondViewController: UIViewController {
     }
     
     @IBAction func actionButton(_ sender: UIButton) {
-        presenter?.showName()
+        let name = textField.text
+        self.delegate.addTableDelegate(addForViewController: name!)
         dismiss(animated: true, completion: nil)
         navigationController?.popViewController(animated: true)
     }
 }
-
+    
