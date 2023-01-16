@@ -13,6 +13,7 @@ protocol NameControllerPresenter: AnyObject {
 
 protocol NamePresenter: AnyObject {
     init(view: NameControllerPresenter)
+    func showName()
 }
 
 class ViewPresenter: NamePresenter {
@@ -25,6 +26,10 @@ class ViewPresenter: NamePresenter {
     
     var secondView: SecondViewController!
     
-   
+    func showName() {
+        let name = secondView.textField.text
+        self.view.addTableDelegate(addForViewController: name!)
     }
+}
+
 
